@@ -1,3 +1,5 @@
 @import "./reset";
 @import "font-awesome";
-@import "./contents"
+@import "./contents";
+@import "user";
+@import "flash"
