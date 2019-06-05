@@ -1,30 +1,3 @@
-.chat
-  
+.chat 
   = render 'shared/chat-side'
   
-  .contents
-    .contents__member
-      .contents__member_current-group
-        .group-name 
-          test-group
-          .member-name 
-            test-member
-      .button 
-        edit
-    .contents__main
-      .message
-        .message__upper
-          .upper__name
-            ishikawa 
-          .upper__date 
-            2019
-        .message__text
-          konnnitiha 
-    .contents__form
-      %form
-        %input.contents__form__message
-        .contents__form__mask
-          %label.contents__form__mask__image
-            = fa_icon 'picture-o', class: 'icon'
-            %input.hidden{type: 'file'}
-          %input.contents__form__submit{type: 'submit', value: 'Send'}
