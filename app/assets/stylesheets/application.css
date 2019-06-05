@@ -1,6 +1,8 @@
 @import "./reset";
 @import "font-awesome";
-@import "./contents";
+@import "mixins/vendor_prefix";
+@import "./modules/contents";
+@import "modules/chat-side";
 @import "user";
 @import "group";
 @import "flash"
