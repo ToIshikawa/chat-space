@@ -3,6 +3,7 @@ body{
 }
 .chat{
   display: flex;
+
   @mixin contents_width{
     box-sizing: border-box; 
     padding: 0 40px;
@@ -58,6 +59,7 @@ body{
     &__main{
       height: calc(100vh - 100px - 90px);
       float: right;
+      overflow: scroll;
       padding: 46px 40px;
       background-color: #fafafa;
       box-sizing: border-box; 
@@ -94,7 +96,7 @@ body{
       display: flex;
       height: 90px;
       padding: 20px 50px 20px 40px;
-      form{
+      .form{
         width: 100%;
       }
         &__message {
@@ -106,6 +108,7 @@ body{
         }
         &__mask {
           background-color: white;
+          display: flex;
           height: 50px;
           &__image {
             font-size: 20px;

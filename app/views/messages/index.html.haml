@@ -12,19 +12,14 @@
       .button 
         edit
     .contents__main
-      .message
-        .message__upper
-          .upper__name
-            ishikawa 
-          .upper__date 
-            2019
-        .message__text
-          konnnitiha 
+      .messages
+        = render @messages
     .contents__form
-      %form
-        %input.contents__form__message
-        .contents__form__mask
-          %label.contents__form__mask__image
-            = fa_icon 'picture-o', class: 'icon'
-            %input.hidden{type: 'file'}
-          %input.contents__form__submit{type: 'submit', value: 'Send'}
+      .form
+        = form_for [@group, @message] do |f|
+          = f.text_field :content, class: 'contents__form__message', placeholder: 'type a message'
+          .contents__form__mask
+            = f.label :image, class: 'contents__form__mask__image' do
+              = fa_icon 'picture-o', class: 'icon'
+              = f.file_field :image, class: 'hidden'
+          = f.submit 'Send', class: 'contents__form__submit'
