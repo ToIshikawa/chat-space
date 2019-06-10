@@ -49,8 +49,8 @@ $(function() {
     })
     .done(function(message){
       var html = buildMessage(message)
-      var b = $('.messages');
-      $('div').animate({scrollTop: b.height()})
+      var messagesHeight = $('.messages');
+      $('div').animate({scrollTop: messagesHeight.height()})
       $('.messages').append(html)
       var formElement = $('form')
       formElement[0].reset();
