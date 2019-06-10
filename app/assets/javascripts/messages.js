@@ -1,7 +1,13 @@
 $(function() {
-
-  function buildMessage(message){
+  function createImage(message){
     if(message.image.url == null){
+      return ``
+    } else {
+      return `<img class="lower-message__image" src='${message.image.url}'></img>`
+    }
+  }
+
+  function buildMessage(message){  
       var html = `<div class="message">
                     <div class="message__upper">
                       <div class="upper__name">
@@ -15,24 +21,8 @@ $(function() {
                       <p class="lower-message__content">
                         ${message.content}
                       </p>
+                        ${createImage(message)}  
                   </div>`
-    } else {
-    var html = `<div class="message">
-                  <div class="message__upper">
-                    <div class="upper__name">
-                      ${message.user_name}
-                    </div>
-                    <div class="upper__date">
-                      ${message.date}
-                    </div>
-                  </div>
-                  <div class="message-text">
-                    <p class="lower-message__content">
-                      ${message.content}
-                    </p>
-                    <img class="lower-message__image" src='${message.image.url}'>
-                </div>`
-    }
     return html
   }
 
@@ -49,11 +39,9 @@ $(function() {
     })
     .done(function(message){
       var html = buildMessage(message)
-      var messagesHeight = $('.messages');
-      $('div').animate({scrollTop: messagesHeight.height()})
+      $('div').animate({scrollTop: $('.messages').height()})
       $('.messages').append(html)
-      var formElement = $('form')
-      formElement[0].reset();
+      $('form')[0].reset();
     })
     .fail(function(){
       alert('messageか画像を入力してください')
