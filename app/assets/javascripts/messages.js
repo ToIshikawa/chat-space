@@ -52,8 +52,8 @@ $(function() {
       var b = $('.messages');
       $('div').animate({scrollTop: b.height()})
       $('.messages').append(html)
-      $('#message_content').val("")
-      
+      var formElement = $('form')
+      formElement[0].reset();
     })
     .fail(function(){
       alert('messageか画像を入力してください')
