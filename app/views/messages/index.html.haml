@@ -8,9 +8,12 @@
         .group-name 
           = @group.name
           .member-name 
-            = current_user.name
-      .button 
-        edit
+            member :
+            - @group.users.each do |group_user|
+              = group_user.name
+      = link_to edit_group_path(current_user) do
+        .button 
+          edit
     .contents__main
       .messages
         = render @messages
