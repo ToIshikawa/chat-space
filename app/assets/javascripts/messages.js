@@ -7,8 +7,8 @@ $(function() {
     }
   }
 
-  function buildMessage(message){  
-      var html = `<div class="message">
+  function buildHTML(message){
+      var html = `<div class="message" data-id="${message.id}">
                     <div class="message__upper">
                       <div class="upper__name">
                         ${message.user_name}
@@ -38,7 +38,7 @@ $(function() {
       contentType: false
     })
     .done(function(message){
-      var html = buildMessage(message)
+      var html = buildHTML(message)
       $('div').animate({scrollTop: $('.messages').height()})
       $('.messages').append(html)
       $('form')[0].reset();
@@ -46,7 +46,30 @@ $(function() {
     .fail(function(){
       alert('messageか画像を入力してください')
     })
-    
     return false;
   })
+
+  var reloadMessages = function() {
+    if (window.location.href.match(/\/groups\/\d+\/messages/)){
+      last_message_id = $('.message:last').data("id");
+      $.ajax({
+        url: "api/messages",
+        type: 'GET',
+        dataType: 'json',
+        data: {id: last_message_id}
+      })
+      .done(function(messages) {
+        var insertHTML = '';
+        messages.forEach(function (message) {
+        insertHTML = buildHTML(message);
+        $('.messages').append(insertHTML); 
+        $('div').animate({scrollTop: $('.messages').height()})
+        })
+      })
+      .fail(function() {
+        alert('更新に失敗しました');
+      });
+    };
+  } 
+  setInterval(reloadMessages, 5000); 
 });
