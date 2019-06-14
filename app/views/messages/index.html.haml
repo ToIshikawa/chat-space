@@ -11,7 +11,7 @@
             member :
             - @group.users.each do |group_user|
               = group_user.name
-      = link_to edit_group_path(current_user) do
+      = link_to edit_group_path(@group), data: {"turbolinks" => false} do
         .button 
           edit
     .contents__main
